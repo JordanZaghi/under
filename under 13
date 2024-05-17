@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificar Under 13</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f2f2f2;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #resultado {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<form id="under13Form">
+    <label for="sum_cantos_time1_5">Soma dos Cantos Time 1 - Últimos 5 Jogos:</label>
+    <input type="number" id="sum_cantos_time1_5" name="sum_cantos_time1_5" min="0"><br>
+    
+    <label for="sum_cantos_time2_5">Soma dos Cantos Time 2 - Últimos 5 Jogos:</label>
+    <input type="number" id="sum_cantos_time2_5" name="sum_cantos_time2_5" min="0"><br>
+    
+    <label for="sum_escanteios_h2h_5">Soma dos Escanteios H2H - Últimos 5 Jogos:</label>
+    <input type="number" id="sum_escanteios_h2h_5" name="sum_escanteios_h2h_5" min="0"><br>
+    
+    <button type="button" onclick="verificarUnder13()">Verificar</button>
+</form>
+
+<div id="resultado"></div>
+
+<script>
+function verificarUnder13() {
+    var sum_cantos_time1_5 = parseInt(document.getElementById('sum_cantos_time1_5').value);
+    var sum_cantos_time2_5 = parseInt(document.getElementById('sum_cantos_time2_5').value);
+    var sum_escanteios_h2h_5 = parseInt(document.getElementById('sum_escanteios_h2h_5').value);
+    
+    var media_cantos_time1 = sum_cantos_time1_5 / 5;
+    var media_cantos_time2 = sum_cantos_time2_5 / 5;
+    var media_escanteios_h2h_5 = sum_escanteios_h2h_5 / 5;
+    
+    var resultadoDiv = document.getElementById('resultado');
+    
+    if (media_cantos_time1 <= 7 && media_cantos_time2 <= 7 && media_escanteios_h2h_5 < 10) {
+        resultadoDiv.textContent = "Cabe under 13";
+    } else {
+        resultadoDiv.textContent = "Não cabe under 13";
+    }
+}
+</script>
+
+</body>
+</html>
